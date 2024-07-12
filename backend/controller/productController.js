@@ -36,6 +36,20 @@ exports.addProduct = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+exports.getTopProducts = async (req, res) => {
+    try {
+        const { category, Companies, limit } = req.query;
+        if (!category || !Companies || !limit) {
+            return res.status(400).json({ message: 'Category, Companies, and limit are required' });
+        }
+        const products = await Product.find({ category, Companies: Companies })
+            .sort({ rating: -1, price: 1 })
+            .limit(parseInt(limit)); 
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 
 
