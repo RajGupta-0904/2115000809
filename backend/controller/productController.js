@@ -12,10 +12,10 @@ exports.getAllProducts = async (req, res) => {
 }
 
 exports.addProduct = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //     return res.status(400).json({ errors: errors.array() });
+    // }
     const { productName, price, rating, discount, availability, Companies, category } = req.body;
 
     try {
@@ -29,7 +29,8 @@ exports.addProduct = async (req, res) => {
             category
         });
         await newProduct.save();
-        res.status(201).json({ message: 'Product added successfully', product: newProduct });
+        // res.status(201).json({ message: 'Product added successfully', product: newProduct });
+        res.status(200).json({newProduct});
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');

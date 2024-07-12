@@ -1,19 +1,22 @@
 const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
-        productName: {type:String ,required:true},
-        price: {type:Number,required:true},
-        rating:{type:String ,required:true},
-        discount: {type:Number,required:true},
-        availability:{type:String ,required:true},
+        productName: {type:String },
+        price: {type:Number},
+        rating:{type:String},
+        discount: {type:Number},
+        availability:{type:String},
         Companies: {
             type: String,
-            enum: ['AMZ', 'FLP', 'SNP', 'MYN', 'AZD']
+            enum: ['AMZ', 'FLP', 'SNP', 'MYN', 'AZD'],
+            // required:true,
         },
         category: {
             type: String,
             enum: ['Phone', 'Computer', 'Tv', 'EarPhone', 'Tablet',
                    'Mouse', 'Pendrive', 'Speaker', 'Charger', 'PC',
-                   'Keypad', 'Bluetooth', 'Remote', 'Headset', 'Laptop']
+                   'Keypad', 'Bluetooth', 'Remote', 'Headset', 'Laptop'],
+                //    required:true,
+            
         }
 },{timestamps:true});
 
